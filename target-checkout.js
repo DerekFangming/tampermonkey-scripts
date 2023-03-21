@@ -20,10 +20,12 @@
   How to use the bot:
   1. Set REFRESH_SECONDS and MAX_QUANTITY_SELECTION accordingly. Make sure PLACE_ORDER is set to true. Click (Ctrl + S) to save this script if you make changes.
   2. Open a new tab and navigate to the item. If the item is available, the bot will place an order immediately. If the item is not available, the bot will automatically refresh the page until it's available.
+  3. Make sure the tab is opened for bot to run. Do not shutdown your PC.
+  4. Make sure to turn off the script from Tampermonkey plugin when not using it. Otherwise it will place order whenever you are on a target item page.
 
 */
 
-// If the item is out of stop, bot will automatically refresh the page after below seconds and check again. To avoid being banned by target, please keep it above 60 seconds.
+// If the item is out of stock, bot will automatically refresh the page after below seconds and check again. To avoid being banned by target, please keep it above 60 seconds.
 const REFRESH_SECONDS = 60;
 
 // Control how many items to add to cart if available.
@@ -176,5 +178,7 @@ const PLACE_ORDER = false;
     }
 
 })()
+
+
 
 
