@@ -24,10 +24,10 @@
 */
 
 // If the item is out of stop, bot will automatically refresh the page after below seconds and check again. To avoid being banned by target, please keep it above 60 seconds.
-const REFRESH_SECONDS = 5;
+const REFRESH_SECONDS = 60;
 
 // Control how many items to add to cart if available.
-const MAX_QUANTITY_SELECTION = 10;
+const MAX_QUANTITY_SELECTION = 4;
 
 // When set to true, bot will checkout shopping cart. When set to false, bot will test checkout process and tell you if everything works or not.
 const PLACE_ORDER = false;
