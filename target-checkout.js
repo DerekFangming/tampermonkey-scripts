@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Target.com Checkout Bot
 // @namespace    https://github.com/DerekFangming/tampermonkey-scripts
-// @version      1.0
+// @version      1.0.1
 // @description  try to take over the world!
 // @author       You
 // @match        https://www.target.com/*
