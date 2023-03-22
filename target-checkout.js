@@ -1,12 +1,10 @@
 // ==UserScript==
 // @name         Target.com Checkout Bot
 // @namespace    https://github.com/DerekFangming/tampermonkey-scripts
-// @version      1.0.1
-// @description  try to take over the world!
-// @author       You
+// @version      1.0.2
+// @description  Auto place order on target.com
+// @author       Fangming
 // @match        https://www.target.com/*
-// @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
-// @grant        none
 // ==/UserScript==
 
 /*
