@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Target.com Checkout Bot
 // @namespace    https://github.com/DerekFangming/tampermonkey-scripts
-// @version      1.0.2
+// @version      1.0.3
 // @description  Auto place order on target.com
 // @author       Fangming
 // @match        https://www.target.com/*
@@ -14,13 +14,11 @@
   3. Open a new tab and navigate to an item that is in stock. The bot should add MAX_QUANTITY_SELECTION items to the shopping cart and attempt to checkout(Will stop before placing order).
   4. If you see a popup window, the bot is working correctly. If you see red error message on the status panel, let me know.
   5. Go to shopping cart and make sure to remove everything, especially the items we just tested here. After that you can start using it by following the steps below.
-
   How to use the bot:
   1. Set REFRESH_SECONDS and MAX_QUANTITY_SELECTION accordingly. Make sure PLACE_ORDER is set to true. Click (Ctrl + S) to save this script if you make changes.
   2. Open a new tab and navigate to the item. If the item is available, the bot will place an order immediately. If the item is not available, the bot will automatically refresh the page until it's available.
   3. Make sure the tab is opened for bot to run. Do not shutdown your PC.
   4. Make sure to turn off the script from Tampermonkey plugin when not using it. Otherwise it will place order whenever you are on a target item page.
-
 */
 
 // If the item is out of stock, bot will automatically refresh the page after below seconds and check again. To avoid being banned by target, please keep it above 60 seconds.
@@ -28,6 +26,10 @@ const REFRESH_SECONDS = 60;
 
 // Control how many items to add to cart if available.
 const MAX_QUANTITY_SELECTION = 4;
+
+// If empty, bot will purchase item whenever you are viewing one. When this is set, bot to check item title before attempting to purchase.
+// This is case INSENSITIVE. Example value: Enfamil NeuroPro
+const ITEM_NAME = "";
 
 // When set to true, bot will checkout shopping cart. When set to false, bot will test checkout process and tell you if everything works or not.
 const PLACE_ORDER = false;
@@ -49,6 +51,17 @@ const PLACE_ORDER = false;
     footer.innerHTML = '<small>If this tool is stuck, refresh the page manually to reload it</small>'
     footer.style.cssText = 'position:fixed;left:15px;bottom:0;'
     statusBar.appendChild(footer)
+
+    if (ITEM_NAME.trim() != "") {
+        let itemName = ITEM_NAME.trim().toLowerCase()
+        var title = document.getElementsByTagName("title")[0].innerHTML.toLowerCase()
+
+        if (!title.includes(itemName)) {
+            status.style.cssText = 'color:yellow;'
+            status.innerHTML = `Item title does not contain keywork "${ITEM_NAME}". Auto checkout disabled.`
+            return
+        }
+    }
 
     var itemPageInterval = setInterval(function() {
         if (nextRefresh != null) {
@@ -176,7 +189,5 @@ const PLACE_ORDER = false;
     }
 
 })()
-
-
 
 
